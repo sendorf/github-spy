@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+html
+  head
+    title Github Spy
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+      .container-fluid
+        a.navbar-brand href="#{root_path}"
+          i.fa.fa-search Github Spy
+        = form_tag "/github_users/search", method:"post", class: "form-inline float-xs-right"
+          .form-group
+            input.form-control type="text" placeholder="Search" name="search[value]"
+
+          button.btn.btn-outline-success type="submit" Submit
+    .container
+      = yield

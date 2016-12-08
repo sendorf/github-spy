@@ -1,0 +1,57 @@
+h1 Search Result
+nav
+  ul.pagination
+    - if @page == 0
+      li.page-item
+    - else
+      li.page-item.disabled
+    a.page-link href="#{list_github_users_path(value: @query_params[:q], page: 1)}" aria-label="Next"
+      span aria-hidden="true" «
+    - (1..@total_pages).each do |page|
+      - if page == @page
+        li.page-item.active
+      - else
+        li.page-item
+      a.page-link href="#{list_github_users_path(value: @query_params[:q], page: page)}"
+          = "#{page}"
+    - if @page == @total_pages
+      li.page-item
+    - else
+      li.page-item.diabled
+    a.page-link href="#{list_github_users_path(value: @query_params[:q], page: @total_pages)}" aria-label="Next"
+      span aria-hidden="true" »
+
+table.table.table-bordered.table-striped
+  tr
+    th Avatar
+    th Login
+  - @github_users.each do |github_user|
+    tr
+      td
+        a href="#{github_user_path(id: github_user["login"])}"
+          img src="#{github_user["avatar_url"]}" height="45" width="45"
+      td
+        a href="#{github_user_path(id: github_user["login"])}"
+          = "#{github_user["login"]}"
+
+nav
+  ul.pagination
+    - if @page == 0
+      li.page-item
+    - else
+      li.page-item.disabled
+    a.page-link href="#{list_github_users_path(value: @query_params[:q], page: 1)}" aria-label="Next"
+      span aria-hidden="true" «
+    - (1..@total_pages).each do |page|
+      - if page == @page
+        li.page-item.active
+      - else
+        li.page-item
+      a.page-link href="#{list_github_users_path(value: @query_params[:q], page: page)}"
+          = "#{page}"
+    - if @page == @total_pages
+      li.page-item
+    - else
+      li.page-item.diabled
+    a.page-link href="#{list_github_users_path(value: @query_params[:q], page: @total_pages)}" aria-label="Next"
+      span aria-hidden="true" »

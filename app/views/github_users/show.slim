@@ -1,0 +1,19 @@
+img.rounded.mx-auto.d-block src="#{@github_user["avatar_url"]}"
+h1
+  a href="#{@github_user["html_url"]}"
+    =@github_user["login"]
+h2=@github_user["name"]
+h3 Repositories
+table.table.table-bordered.table-striped
+  tr
+    th Name
+    th Created at
+    th Last Updated at
+  - @github_user_repos.each do |repo|
+    tr
+      html_url
+      td
+        a href="#{repo["html_url"]}"
+          =repo["name"]
+      td=repo["created_at"].to_datetime.strftime("%d/%m/%Y %H:%M:%S")
+      td=repo["updated_at"].to_datetime.strftime("%d/%m/%Y %H:%M:%S")
